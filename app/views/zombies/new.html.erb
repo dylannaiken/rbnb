@@ -1,0 +1,12 @@
+<h1>New Zombie</h1>
+
+<%= simple_form_for(@zombie) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price%>
+  <%= f.input :description %>
+  <%= f.input :height %>
+  <%= f.input :race %>
+  <%= f.input :skill %>
+  <%= f.input :user_id %>
+  <%= f.submit %>
+<% end %>

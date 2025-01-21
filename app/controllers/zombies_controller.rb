@@ -41,6 +41,6 @@ class ZombiesController < ApplicationController
   end
 
   def zombie_params
-    params.require(:zombie).permit(:name, :price, :image, :description, :height, :race, :skill, :user_id)
+    params.require(:zombie).permit(:name, :price, :description, :height, :race, :skill, :user_id)
   end
 end

@@ -7,3 +7,5 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+User.create(email:"email@gmail.com", password:"password")
+Zombie.create(name:"Dylan", price:7, description:"humble", skill:"pena skill", height:"6m2", race:"idk", user:User.last)

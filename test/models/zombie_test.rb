@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AppartmentTest < ActiveSupport::TestCase
+class ZombieTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

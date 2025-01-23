@@ -1,5 +1,6 @@
 class ZombiesController < ApplicationController
   before_action :set_zombie, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: :index
 
   def index
     @zombies = Zombie.all
@@ -14,6 +15,7 @@ class ZombiesController < ApplicationController
 
   def create
     @zombie = Zombie.new(zombie_params)
+    @zombie.user = current_user
     if @zombie.save
       redirect_to @zombie, notice: 'Zombie was successfully created.'
     else
@@ -41,6 +43,6 @@ class ZombiesController < ApplicationController
   end
 
   def zombie_params
-    params.require(:zombie).permit(:name, :price, :description, :height, :race, :skill, :user_id)
+    params.require(:zombie).permit(:name, :price, :description, :height, :race, :skill)
   end
 end

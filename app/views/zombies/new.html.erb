@@ -9,3 +9,133 @@
   <%= f.input :skill %>
   <%= f.submit %>
 <% end %>
+
+<style>
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #b12a35, #57f7b4);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .form-container {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+
+    .form-container input, .form-container select, .form-container textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      font-size: 16px;
+      background-color: #f7f7f7;
+      transition: background-color 0.3s ease, border 0.3s ease;
+    }
+
+
+    .form-container input:focus, .form-container select:focus, .form-container textarea:focus {
+      background-color: #e9f9f0;
+      border-color: #57f7b4;
+    }
+
+    .form-container input[type="submit"] {
+      background-color: #228B22;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container input[type="submit"]:hover {
+      background-color: #4ae1a0;
+    }
+
+
+    .form-container label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+
+    .form-container textarea {
+      height: 120px;
+      resize: none;
+    }
+
+
+    .form-container:hover {
+      transform: translateY(-10px);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h1>Create Your Zombie</h1>
+
+    <%= simple_form_for(@zombie) do |f| %>
+      <div>
+        <%= f.input :name, label: "Name", input_html: { placeholder: "Enter zombie's name" } %>
+      </div>
+
+      <div>
+        <%= f.input :price, label: "Price", input_html: { placeholder: "Enter price in USD" } %>
+      </div>
+
+      <div>
+        <%= f.input :description, label: "Description", as: :text, input_html: { placeholder: "Describe your zombie" } %>
+      </div>
+
+      <div>
+        <%= f.input :height, label: "Height", input_html: { placeholder: "Enter height" } %>
+      </div>
+
+      <div>
+        <%= f.input :race, label: "Race", collection: ['Undead', 'Mutant', 'Vampire'], input_html: { class: "select-style" } %>
+      </div>
+
+      <div>
+        <%= f.input :skill, label: "Skill", input_html: { placeholder: "Enter skill level" } %>
+      </div>
+
+      <div>
+        <%= f.submit "Create Zombie", class: "submit-btn" %>
+      </div>
+    <% end %>
+  </div>
+
+</body>
+</html>

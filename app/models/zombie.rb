@@ -1,7 +1,5 @@
 class Zombie < ApplicationRecord
   belongs_to :user
-end
-class Zombie < ApplicationRecord
   has_many :bookings
   has_many :users, through: :bookings
 

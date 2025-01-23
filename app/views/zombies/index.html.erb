@@ -1,8 +1,21 @@
-<h1>All zombies</h1>
-<ul>
-   <% @zombies.each do |zombie| %>
-   <li><%= zombie.name %></li>
-   <% end %>
-</ul>
-<%= link_to "Create a new zombie", new_zombie_path %>
-<%# <a href="/new">Create a new zombie</a> %>
+<h1 class="text-center">Tous les zombies</h1>
+
+<div class="container mt-5">
+  <div class="row">
+    <% @zombies.each do |zombie| %>
+      <div class="col-md-4 col-sm-6 mb-4">
+        <div class="card mb-3" style="width: 20rem; border-radius: 15px">
+          <div class="card-body shadow-lg">
+            <h6><%= zombie.name %></h6>
+            <div>
+              <span>User : <%= zombie.user[:email] %></span>
+            </div>
+            <span>Race : <%= zombie.race %></span>
+            <h5><%= zombie.price %>RS par jour</h5>
+          </div>
+          <a href="<%= zombie_path(zombie) %>" class="btn btn-dark mt-2">Voir plus</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

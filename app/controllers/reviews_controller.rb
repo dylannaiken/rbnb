@@ -1,19 +1,12 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[ show edit update destroy ]
+  before_action :set_review, only: %i[show edit update destroy]
 
   # def index
   #   @reviews = Review.all
   # end
-
-  #def show
-  #end
-
   def new
     @review = Review.new
   end
-
-  #def edit 
-  #end
 
   def create
     @review = Review.new(review_params)
@@ -38,13 +31,13 @@ class ReviewsController < ApplicationController
 #     redirect_to reviews_url, notice: "Review was successfully destroyed.", status: :see_other
 #   end
 
-   private
+  private
 
-#     def set_review
-#       @review = Review.find(params[:id])
-#     end
+# def set_review
+#   @review = Review.find(params[:id])
+# end
 
-     def review_params
-       params.require(:review).permit(:name, :address, :opening_date)
-     end
- end
+  def review_params
+    params.require(:review).permit(:name, :address, :opening_date)
+  end
+end

@@ -1,2 +1,12 @@
 // Import page-specific CSS files here.
 @import "home";
+
+// @font-face {
+//   font-family: 'zombiea';
+//   src: url('app/assets/fonts/zombie-webfont.woff2') format('woff2'),
+//        url('app/assets/fonts/zombie-webfont.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+@font-face { font-family: 'zombiea'; src: font-url('zombie-webfont.woff2'); }

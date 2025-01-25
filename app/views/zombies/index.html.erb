@@ -1,21 +1,38 @@
-<h1 class="text-center">Tous les zombies</h1>
+<style>
+  body {
+    background: #C6DEC6;
+  }
 
-<div class="container mt-5">
-  <div class="row">
-    <% @zombies.each do |zombie| %>
-      <div class="col-md-4 col-sm-6 mb-4">
-        <div class="card mb-3" style="width: 20rem; border-radius: 15px">
-          <div class="card-body shadow-lg">
-            <h6><%= zombie.name %></h6>
-            <div>
-              <span>User : <%= zombie.user[:email] %></span>
+  .zombie  {
+    font-family: 'zombiea';
+  }
+
+  h5 {
+    color: #758173;
+  }
+
+</style>
+
+<body>
+  <h1 class="text-center zombie">Tous les zombies</h1>
+
+  <div class="container mt-5">
+    <div class="row">
+      <% @zombies.each do |zombie| %>
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card mb-3" style="width: 20rem; border-radius: 15px">
+            <div class="card-body shadow-lg">
+              <h3 class="zombie"><%= zombie.name %></h6>
+              <div>
+                <span>User : <%= zombie.user[:email] %></span>
+              </div>
+              <span>Race : <%= zombie.race %></span>
+              <h5><%= zombie.price %>RS par jour</h5>
             </div>
-            <span>Race : <%= zombie.race %></span>
-            <h5><%= zombie.price %>RS par jour</h5>
+            <a href="<%= zombie_path(zombie) %>" class="btn" style="background: #758173">Voir plus</a>
           </div>
-          <a href="<%= zombie_path(zombie) %>" class="btn btn-dark mt-2">Voir plus</a>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+</body>

@@ -1,0 +1,27 @@
+<h1><%= @zombie.name %></h1>
+
+<h2>Réservations :</h2>
+<ul>
+  <% @zombie.bookings.each do |booking| %>
+    <li>
+      <strong>Date de début :</strong> <%= booking.start_date.strftime('%d/%m/%Y') %><br>
+      <strong>Date de fin :</strong> <%= booking.end_date.strftime('%d/%m/%Y') %><br>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Faire une réservation :</h2>
+<%= form_with(model: [@zombie, Booking.new], local: true) do |form| %>
+  <div>
+    <%= form.label :start_date, 'Date de début' %>
+    <%= form.date_field :start_date %>
+  </div>
+  <div>
+    <%= form.label :end_date, 'Date de fin' %>
+    <%= form.date_field :end_date %>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div>
+    <%= form.submit 'Confirmer la réservation' %>
+  </div>
+<% end %>

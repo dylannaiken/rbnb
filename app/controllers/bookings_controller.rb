@@ -1,37 +1,37 @@
 class BookingsController < ApplicationController
-  before_action :set_apartment, only: [:new, :create, :edit, :update]
+  before_action :set_zombie, only: [:new, :create, :edit, :update]
   before_action :set_booking, only: [:edit, :update, :destroy]
 
-  # GET /apartments/:apartment_id/bookings
+  # GET /zombies/:zombie_id/bookings
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings
   end
 
-  # GET /apartments/:apartment_id/bookings/new
+  # GET /zombies/:zombie_id/bookings/new
   def new
     @booking = Booking.new
   end
 
-  # POST /apartments/:apartment_id/bookings
+  # POST /zombies/:zombie_id/bookings
   def create
-    @booking = @apartment.bookings.build(booking_params)
+    @booking = @zombie.bookings.build(booking_params)
     @booking.user = current_user
 
     if @booking.save
-      redirect_to @apartment, notice: 'Réservation effectuée avec succès.'
+      redirect_to @zombie, notice: 'Réservation effectuée avec succès.'
     else
       render :new
     end
   end
 
-  # GET /apartments/:apartment_id/bookings/:id/edit
+  # GET /zombies/:zombie_id/bookings/:id/edit
   def edit
   end
 
-  # PATCH/PUT /apartments/:apartment_id/bookings/:id
+  # PATCH/PUT /zombies/:zombie_id/bookings/:id
   def update
     if @booking.update(booking_params)
-      redirect_to @apartment, notice: 'Réservation mise à jour avec succès.'
+      redirect_to @zombie, notice: 'Réservation mise à jour avec succès.'
     else
       render :edit
     end
@@ -39,14 +39,19 @@ class BookingsController < ApplicationController
 
   # DELETE /bookings/:id
   def destroy
-    @booking.destroy
-    redirect_to bookings_url, notice: 'Réservation supprimée avec succès.'
+    @booking = current_user.bookings.find(params[:id])
+    if @booking.destroy
+      flash[:notice] = "Réservation supprimée avec succès."
+    else
+      flash[:alert] = "Une erreur est survenue lors de la suppression."
+    end
+    redirect_to bookings_path
   end
 
   private
 
-  def set_apartment
-    @apartment = Apartment.find(params[:apartment_id])
+  def set_zombie
+    @zombie = Zombie.find(params[:zombie_id])
   end
 
   def set_booking

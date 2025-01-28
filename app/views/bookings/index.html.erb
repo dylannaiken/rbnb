@@ -1,0 +1,100 @@
+<style>
+body {
+  background: #758173;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.notifications {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.notification-content {
+  flex-grow: 1;
+}
+
+.notification-actions {
+  margin-left: 15px;
+}
+
+.delete-button {
+  color: #fff;
+  background-color: #758173;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color:rgb(63, 70, 62);
+}
+
+a {
+  text-decoration: none;
+  color: #758173;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgb(63, 70, 62);
+}
+
+</style>
+<h1 class="text-center">All My Bookings</h1>
+<div class="notifications">
+  <% if @bookings.any? %>
+    <% @bookings.each do |booking| %>
+      <div class="notification">
+        <div class="disflex">
+        <% zombie = Zombie.find_by_id(booking.zombie_id) %>
+        <h3><a href="http://[::1]:3000/zombies/<%= zombie.id %>"><strong><%= zombie.name %></strong></a></h1>
+        <p><%= zombie.description %></p>
+        <p>Start Date : <%= booking.start_date %></p>
+        <p>End Date : <%= booking.end_date %></p>
+        </div>
+        <div class="notification-actions disflex">
+          <%= form_with model: booking, method: :delete, local: true do |form| %>
+            <%= form.submit 'Delete', class: 'delete-button' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No booking found.</p>
+  <% end %>
+</div>

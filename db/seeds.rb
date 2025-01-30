@@ -10,4 +10,4 @@
 User.destroy_all
 Zombie.destroy_all
 User.create(email:"email@gmail.com", password:"password")
-Zombie.create(name:"Dylan", price:7, description:"humble", skill:"pena skill", height:"6m2", race:"idk", user:User.last)
+Zombie.create(name:"Dylan",address:"paris", price:7, description:"humble", skill:"pena skill", height:"6m2", race:"idk", user:User.last)

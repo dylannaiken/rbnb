@@ -1,65 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Zombies</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
   <style>
     body {
-      font-family: 'Times New Roman', Times, serif, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       margin: 20px;
-      background-color: #f9f9f9;
+      background-color: #758173;
+      color: #blanc;
     }
 
-    h1 {
-      color: #333;
+    header {
       text-align: center;
+      color: blanchedalmond;
     }
 
-    h2 {
-      color: #555;
-      margin-top: 20px;
-    }
-
-    p {
-      background-color: #A9C5A0;
+    .description, .balcony {
+      background-color: #fff;
       padding: 15px;
       border: 2px solid #ddd;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
     }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
+    .image-gallery {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
     }
 
-    li {
-      background-color: #fff;
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid #ddd;
+    .image-gallery img {
+      width: 48%;
       border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    form {
-      max-width: 400px;
-      margin: 20px auto;
+    .content {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .details, .reservation {
+      background: #fff;
       padding: 15px;
       border: 1px solid #ddd;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      background-color: #A9C5A0;
+      width: 48%;
+      font-size: 0.8em;
+    }
+
+    h2 {
+      color: #555;
+      margin-top: 0;
     }
 
     .form-group {
       margin-bottom: 15px;
     }
 
-    .form-group label {
+    label {
       display: block;
       margin-bottom: 5px;
       font-weight: bold;
     }
 
-    .form-control {
+    input[type="text"] {
       width: 100%;
       padding: 8px;
       box-sizing: border-box;
@@ -67,56 +78,122 @@
       border-radius: 4px;
     }
 
-    .btn {
+    button {
       display: inline-block;
       padding: 10px 15px;
       font-size: 14px;
       font-weight: 600;
       text-align: center;
       text-decoration: none;
-      white-space: nowrap;
-      background-color: #DAD8D3;
-      color: #2D3142;
+      background-color: #758173;
+      color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .btn:hover {
+    button:hover {
       background-color: #8fae8b;
+    }
+
+    .price-summary {
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    .price-summary p {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+    }
+
+    .price-summary p.total {
+      font-weight: bold;
+      font-size: 1.2em;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1><%= @zombie.name %></h1>
+  <header>
+    <h1>Book a Zombie</h1>
+  </header>
 
-  <h2>Description</h2>
-  <p><%= @zombie.description %></p>
+  <section class="balcony">
+    <h2>Balcony with a View of the Apocalypse</h2>
+    <p>A balcony designed to offer an unobstructed view of an apocalypse-inspired setting, perfect for moments of relaxation.</p>
+  </section>
 
-  <h2>Réservations :</h2>
-  <ul>
-    <% @zombie.bookings.each do |booking| %>
-      <li>
-        <strong>Date de début :</strong> <%= booking.start_date.strftime('%d/%m/%Y') %><br>
-        <strong>Date de fin :</strong> <%= booking.end_date.strftime('%d/%m/%Y') %><br>
-      </li>
-    <% end %>
-  </ul>
+  <section class="image-gallery">
+    <img src="path/to/image1.jpg" alt="Image 1">
+    <img src="path/to/image2.jpg" alt="Image 2">
+    <img src="path/to/image3.jpg" alt="Image 3">
+  </section>
 
-  <h2>Faire une réservation :</h2>
-  <%= form_with(model: [@zombie, Booking.new], local: true) do |form| %>
-    <div class="form-group">
-      <%= form.label :start_date, 'Date de début' %>
-      <%= form.date_field :start_date, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= form.label :end_date, 'Date de fin' %>
-      <%= form.date_field :end_date, class: 'form-control' %>
-    </div>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <div class="form-group">
-      <%= form.submit 'Confirmer la réservation', class: 'btn' %>
-    </div>
-  <% end %>
+  <section class="description">
+    <h2>Description</h2>
+    <p>Welcome to your post-apocalyptic refuge, where every corner is designed to withstand the zombie invasion...</p>
+  </section>
+
+  <main class="content">
+    <section class="details">
+      <h2>Details</h2>
+      <p><strong>Height:</strong> <!-- Height --></p>
+      <p><strong>Race:</strong> <!-- Race --></p>
+      <p><strong>Skill:</strong> <!-- Skill --></p>
+    </section>
+
+    <section class="reservation">
+      <h2>Book a Zombies</h2>
+      <p><strong>225 €</strong> per night</p>
+      <form>
+        <div class="form-group">
+          <label for="start_date">Arrival</label>
+          <input type="text" id="start_date" name="start_date" required>
+        </div>
+        <div class="form-group">
+          <label for="end_date">Departure</label>
+          <input type="text" id="end_date" name="end_date" required>
+        </div>
+        <button type="button" id="calculate">Book Now</button>
+      </form>
+
+      <div class="price-summary">
+        <p>225 € x <span id="nights">0</span> nights <span id="subtotal">0 €</span></p>
+        <p>Feed the zombies <span>45 €</span></p>
+        <p>Service Fee <span>198 €</span></p>
+        <p class="total">Total <span id="total_price">0 €</span></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
+  <script>
+    flatpickr("#start_date", { dateFormat: "Y-m-d", minDate: "today" });
+    flatpickr("#end_date", { dateFormat: "Y-m-d", minDate: "today" });
+
+    document.getElementById("calculate").addEventListener("click", function () {
+      const startDate = new Date(document.getElementById("start_date").value);
+      const endDate = new Date(document.getElementById("end_date").value);
+      const pricePerNight = 225;
+      const cleaningFee = 45;
+      const serviceFee = 198;
+
+      if (startDate && endDate && endDate > startDate) {
+        const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+        const subtotal = nights * pricePerNight;
+        const totalPrice = subtotal + cleaningFee + serviceFee;
+
+        document.getElementById("nights").textContent = nights;
+        document.getElementById("subtotal").textContent = `${subtotal} €`;
+        document.getElementById("total_price").textContent = `${totalPrice} €`;
+      } else {
+        alert("Please select valid dates.");
+      }
+    });
+  </script>
 </body>
 </html>

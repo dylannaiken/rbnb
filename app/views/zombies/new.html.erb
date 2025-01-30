@@ -89,9 +89,9 @@
 <body>
 
   <div class="form-container">
-    <h1>Create Your Zombie</h1>
+    <h1>Create Your Zombies</h1>
 
-    <%= simple_form_for(@zombie) do |f| %>
+    <%= simple_form_for(@zombies) do |f| %>
       <div>
         <%= f.input :name, label: "Name", input_html: { placeholder: "Enter zombie's name" } %>
       </div>
@@ -117,7 +117,7 @@
       </div>
 
       <div>
-        <%= f.submit "Create Zombie", class: "submit-btn" %>
+        <%= f.submit "Create Zombies", class: "submit-btn" %>
       </div>
     <% end %>
   </div>

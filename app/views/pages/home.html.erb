@@ -1,39 +1,38 @@
 <div class="container text-center mt-5">
-  <h1 class="display-4 text-light fw-bold">Welcome to Zombie rbnb</h1>
-  <p class="lead text-light">Rent zombies for any occasion!</p>
-  
-  <%= link_to "See our Zombies", zombies_path, class: "btn btn-lg mt-3 shadow-lg", 
-    style: "background-color: #758173; border-color:rgb(38, 109, 55); color: white; padding: 15px 30px; font-size: 1.2rem; border-radius: 30px;" %>
+  <h1 class="display-4 fw-bold" style="color: #c5efcb;">Welcome to Zombie rbnb</h1>
+  <p class="lead" style="color: #c6dec6;">Rent zombies for any occasion!</p>
+  <%= link_to "See our Zombies", zombies_path, class: "btn btn-lg mt-3 shadow-lg",
+              style: "background-color: #a9c5a0; border-color: #758173; color: #020402; padding: 15px 30px; font-size: 1.2rem; border-radius: 30px;" %>
 </div>
 
 <div class="container mt-5">
-  <h2 class="text-center text-light mb-4">Featured Zombies</h2>
-<div class="row">
-  <% if @zombies.present? %>
-    <% @zombies.each do |zombie| %>
-      <div class="col-md-4">
-        <div class="card text-center shadow-lg" style="border-radius: 15px; overflow: hidden;">
-          <%= cl_image_tag(zombie.image, width: 300, height: 200, crop: :fill, class: "card-img-top") if zombie.image.present? %>
-          <div class="card-body">
-            <h5 class="card-title"><%= zombie.name %></h5>
-            <p class="card-text">Race: <%= zombie.race %></p>
-            <h5 class="text-success fw-bold"><%= zombie.price %>$ per day</h5>
+  <h2 class="text-center mb-4" style="color: #c5efcb;">Featured Zombies</h2>
+  <div class="row">
+    <% if @zombies.present? %>
+      <% @zombies.each do |zombie| %>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center shadow-lg" style="border-radius: 15px; overflow: hidden; background-color: #758173; border: 1px solid #a9c5a0;">
+            <div class="card-body">
+              <h5 class="card-title" style="color: #c5efcb;"><%= zombie.name %></h5>
+              <p class="card-text" style="color: #c6dec6;">Race: <%= zombie.race %></p>
+              <h5 class="fw-bold" style="color: #c5efcb;"><%= zombie.price %>$ per day</h5>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+      <p class="text-center" style="color: #c6dec6;">No zombies available at the moment! 🧟‍♂️</p>
     <% end %>
-  <% else %>
-    <p class="text-light text-center">No zombies available at the moment! 🧟‍♂️</p>
-  <% end %>
+  </div>
 </div>
-
 
 <style>
   body {
     background: url('https://res.cloudinary.com/dz68ybmap/image/upload/v1737804531/360_F_909199769_8alewCPsncEEdPbImV7iXrLXRqRmyqo2_zhpsrp.jpg') no-repeat center center fixed;
     background-size: cover;
+    color: #c6dec6;
   }
-  
+
   body::before {
     content: "";
     position: absolute;
@@ -41,15 +40,28 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(2, 4, 2, 0.7);
     z-index: -1;
   }
 
-  .btn:hover {
-    background-color:rgb(82, 94, 80) !important; 
-    border-color: #1e7e34 !important;
-    transform: scale(1.05);
+  .btn {
     transition: all 0.3s ease-in-out;
+  }
+
+  .btn:hover {
+    background-color: #758173 !important;
+    border-color: #a9c5a0 !important;
+    transform: scale(1.05);
+  }
+
+  .card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
   @keyframes fadeIn {

@@ -1,1 +1,48 @@
 // Specific CSS for your home-page
+
+.toto {
+  background: url('https://res.cloudinary.com/dz68ybmap/image/upload/v1737804531/360_F_909199769_8alewCPsncEEdPbImV7iXrLXRqRmyqo2_zhpsrp.jpg');
+  background-size: cover;
+  color: #c6dec6;
+  height: 100dvh;
+}
+
+.toto::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 4, 2, 0.7);
+  z-index: -1;
+}
+
+.btnhome {
+  transition: all 0.3s ease-in-out;
+}
+
+.btnhome:hover {
+  background-color: #758173 !important;
+  border-color:rgb(255, 255, 255) !important;
+  transform: scale(1.05);
+}
+
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  backdrop-filter: blur(5px);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, p, .btnhome, .card {
+  animation: fadeIn 1s ease-out;
+}

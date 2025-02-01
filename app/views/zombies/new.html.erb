@@ -95,8 +95,11 @@ body {
 <body>
   <h1>Create Your Zombie </h1>
   <div class="form-container">
- featurer-map-home1
-    <%= simple_form_for(@zombie) do |f| %>> 
+      <%= simple_form_for(@zombie) do |f| %>
+      <div class="form-group">
+    <%= f.label :address, "Address" %>
+    <%= f.text_field :address, class: "form-control" %>
+</div>
       <div>
         <%= f.input :name, label: "Name", input_html: { placeholder: "Enter zombie's name" } %>
       </div>
@@ -129,4 +132,3 @@ body {
 
 </body>
 </html>
-

@@ -5,6 +5,13 @@
   background-size: cover;
   color: #c6dec6;
   height: 100dvh;
+
+  .container.home{
+    margin-top: 0px;
+    h1 {
+      margin-top: 0px;
+    }
+  }
 }
 
 .toto::before {

@@ -72,3 +72,4 @@ zombie10.save
 
 puts "- 10"
 puts "- Seeds created"
+

@@ -20,6 +20,7 @@ User.create(username: "Dilshad", email:"dilshad@admins.com", password:"password"
 
 User.create(username: "Fabrice", email:"fabrice@gmail.com", password:"password")
 
+
 zombie1 = Zombie.create(name:"Gnasher", price:"150", description:"A hungry zombie that bites anything that moves.", skill:"Poisonous Bite", height:"1m75", race:"Ghoul", user:User.last)
 zombie2 = Zombie.create(name:"Rotface", price:"200", description:"A corpse in advanced decay, but still dangerous.", skill:"Acidic Toxins", height:"1m80", race:"Undead", user:User.last)
 zombie3 = Zombie.create(name:"Bonecrusher", price:"300", description:"A giant zombie capable of crushing its enemies.", skill:"Brute Strength", height:"2m10", race:"Mutant Zombie", user:User.last)
@@ -48,4 +49,3 @@ zombie10 = Zombie.create(name:"Lurker", price:"190", description:"Hides in the s
 
 puts "- 10"
 puts "- Seeds created"
-

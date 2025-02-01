@@ -10,9 +10,9 @@
     <section class="details">
       <h2>Details</h2>
       <%= cl_image_tag @zombie.photo.key %>
-      <p><strong>Height:</strong> <!-- Height --></p>
-      <p><strong>Race:</strong> <!-- Race --></p>
-      <p><strong>Skill:</strong> <!-- Skill --></p>
+      <p><strong>Height: <%= @zombie.height %></strong> <!-- Height --></p>
+      <p><strong>Race: <%= @zombie.race %></strong> <!-- Race --></p>
+      <p><strong>Skill: <%= @zombie.skill %></strong> <!-- Skill --></p>
     </section>
 
     <section class="reservation">

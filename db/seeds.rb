@@ -48,3 +48,4 @@ zombie10 = Zombie.create(name:"Lurker", price:"190", description:"Hides in the s
 
 puts "- 10"
 puts "- Seeds created"
+

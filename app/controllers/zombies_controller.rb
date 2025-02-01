@@ -4,6 +4,12 @@ class ZombiesController < ApplicationController
 
   def index
     @zombies = Zombie.all
+    @markers = @zombies.geocoded.map do |zombie|
+      {
+        lat: zombie.latitude,
+        lng: zombie.longitude
+      }
+    end
   end
 
   def show

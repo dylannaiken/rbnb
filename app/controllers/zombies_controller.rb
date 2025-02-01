@@ -4,6 +4,9 @@ class ZombiesController < ApplicationController
 
   def index
     @zombies = Zombie.all
+    if params[:query].present?
+      @zombies = @zombies.where("name ILIKE ?", "%#{params[:query]}%")
+    end
     @markers = @zombies.geocoded.map do |zombie|
       {
         lat: zombie.latitude,

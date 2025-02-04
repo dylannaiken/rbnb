@@ -4,6 +4,9 @@ class ZombiesController < ApplicationController
 
   def index
     @zombies = Zombie.all
+    if params[:query].present?
+      @zombies = @zombies.where("name ILIKE ?", "%#{params[:query]}%")
+    end
     @markers = @zombies.geocoded.map do |zombie|
       {
         lat: zombie.latitude,
@@ -49,6 +52,6 @@ class ZombiesController < ApplicationController
   end
 
   def zombie_params
-    params.require(:zombie).permit(:name, :price, :description, :height, :race, :skill)
+    params.require(:zombie).permit(:name, :price, :description, :height, :race, :skill, :photo)
   end
 end

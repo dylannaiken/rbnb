@@ -1,138 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book a Zombies</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
-  <style>
-    body {
-      font-family: 'Times New Roman', Times, serif;
-      margin: 20px;
-      background-color: #758173;
-      color: #blanc;
-    }
-
-    header {
-      text-align: center;
-      color: blanchedalmond;
-    }
-
-    .description, .balcony {
-      background-color: #fff;
-      padding: 15px;
-      border: 2px solid #ddd;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    .image-gallery {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .image-gallery img {
-      width: 48%;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .content {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .details, .reservation {
-      background: #fff;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 48%;
-      font-size: 0.8em;
-    }
-
-    h2 {
-      color: #555;
-      margin-top: 0;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    button {
-      display: inline-block;
-      padding: 10px 15px;
-      font-size: 14px;
-      font-weight: 600;
-      text-align: center;
-      text-decoration: none;
-      background-color: #758173;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #8fae8b;
-    }
-
-    .price-summary {
-      margin-top: 20px;
-      padding-top: 10px;
-      border-top: 1px solid #ddd;
-    }
-
-    .price-summary p {
-      display: flex;
-      justify-content: space-between;
-      margin: 5px 0;
-    }
-
-    .price-summary p.total {
-      font-weight: bold;
-      font-size: 1.2em;
-      border-top: 1px solid #ddd;
-      padding-top: 10px;
-    }
-
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Book a Zombie</h1>
-  </header>
-
-  <section class="balcony">
-    <h2>Balcony with a View of the Apocalypse</h2>
-    <p>A balcony designed to offer an unobstructed view of an apocalypse-inspired setting, perfect for moments of relaxation.</p>
-  </section>
-
-  <section class="image-gallery">
-    <img src="path/to/image1.jpg" alt="Image 1">
-    <img src="path/to/image2.jpg" alt="Image 2">
-    <img src="path/to/image3.jpg" alt="Image 3">
-  </section>
+<body class="bodyall bodyshow">
+  <h1>Book a Zombie</h1>
 
   <section class="description">
     <h2>Description</h2>
@@ -142,14 +9,65 @@
   <main class="content">
     <section class="details">
       <h2>Details</h2>
-      <p><strong>Height:</strong> <!-- Height --></p>
-      <p><strong>Race:</strong> <!-- Race --></p>
-      <p><strong>Skill:</strong> <!-- Skill --></p>
+      <%= cl_image_tag @zombie.photo.key %>
+      <p><strong>Height: <%= @zombie.height %></strong> <!-- Height --></p>
+      <p><strong>Race: <%= @zombie.race %></strong> <!-- Race --></p>
+      <p><strong>Skill: <%= @zombie.skill %></strong> <!-- Skill --></p>
     </section>
 
     <section class="reservation">
-      <h2>Book a Zombies</h2>
-      <p><strong>225 €</strong> per night</p>
+      <h2>Book a Zombie</h2>
+      <!-- Booking Form (no changes needed for booking) -->
+  <div class="card shadow-sm border-0 rounded-3 p-4" data-controller="price" data-price-price-per-night-value="<%= @zombie.price %>">
+  <div class="card-body">
+    <h2 class="h4 fw-bold mb-3">Book this Zombie</h2>
+    <%= simple_form_for [@zombie, @zombie.bookings.new], html: { class: "needs-validation" } do |f| %>
+
+      <!-- Start Date -->
+      <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <%= f.input :start_date,
+            as: :string,
+            input_html: {
+              class: "form-control",
+              data: { controller: "datepicker", price_target: "startDate" }
+            },
+            label: false %>
+      </div>
+
+      <!-- End Date -->
+      <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <%= f.input :end_date,
+            as: :string,
+            input_html: {
+              class: "form-control",
+              data: { controller: "datepicker", price_target: "endDate" }
+            },
+            label: false %>
+      </div>
+
+      <!-- Total Price Display -->
+      <div class="d-flex justify-content-between align-items-center fs-5 fw-semibold">
+        <span>Total Price:</span>
+        <span data-price-target="totalPrice">$0.00</span>
+      </div>
+
+      <!-- Book Now Button -->
+      <div class="mt-3">
+        <%= f.button :submit, "Book Now", class: "btn btn-danger w-100 fw-semibold py-2" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+      <%# <p><strong>225 €</strong> per night</p>
       <form>
         <div class="form-group">
           <label for="start_date">Arrival</label>
@@ -168,33 +86,9 @@
         <p>Service Fee <span>198 €</span></p>
         <p class="total">Total <span id="total_price">0 €</span></p>
       </div>
-    </section>
+    </section> %>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
-  <script>
-    flatpickr("#start_date", { dateFormat: "Y-m-d", minDate: "today" });
-    flatpickr("#end_date", { dateFormat: "Y-m-d", minDate: "today" });
 
-    document.getElementById("calculate").addEventListener("click", function () {
-      const startDate = new Date(document.getElementById("start_date").value);
-      const endDate = new Date(document.getElementById("end_date").value);
-      const pricePerNight = 225;
-      const cleaningFee = 45;
-      const serviceFee = 198;
-
-      if (startDate && endDate && endDate > startDate) {
-        const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-        const subtotal = nights * pricePerNight;
-        const totalPrice = subtotal + cleaningFee + serviceFee;
-
-        document.getElementById("nights").textContent = nights;
-        document.getElementById("subtotal").textContent = `${subtotal} €`;
-        document.getElementById("total_price").textContent = `${totalPrice} €`;
-      } else {
-        alert("Please select valid dates.");
-      }
-    });
-  </script>
 </body>
 </html>
